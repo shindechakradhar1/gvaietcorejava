@@ -1,8 +1,11 @@
 package com.gvacharya.exception.arithmeticoperationproject.utility;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.gvacharya.exception.arithmeticoperationproject.customexceptions.DivideByZeroException;
+import com.gvacharya.exception.arithmeticoperationproject.customexceptions.InvalidPathNameException;
 import com.gvacharya.exception.arithmeticoperationproject.service.ArithmeticOperationService;
 import com.gvacharya.exception.arithmeticoperationproject.service.ArithmeticOperationServiceImpl;
 
@@ -33,7 +36,11 @@ public class ArithmeticUtilityImpl implements ArithmeticUtility {
 		System.out.println("Enter 2 Numbers For Addition");
 		int number1=scanner.nextInt();
 		int number2=scanner.nextInt();
-		System.out.println(service.addition(number1, number2));
+		try {
+			System.out.println(service.addition(number1, number2));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -41,7 +48,11 @@ public class ArithmeticUtilityImpl implements ArithmeticUtility {
 		System.out.println("Enter 2 Numbers For Substraction");
 		int number1=scanner.nextInt();
 		int number2=scanner.nextInt();
-		System.out.println(service.substraction(number1, number2));
+		try {
+			System.out.println(service.substraction(number1, number2));
+		} catch (InvalidPathNameException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -49,7 +60,11 @@ public class ArithmeticUtilityImpl implements ArithmeticUtility {
 		System.out.println("Enter 2 Numbers For Multiplication");
 		int number1=scanner.nextInt();
 		int number2=scanner.nextInt();
-		System.out.println(service.multiplication(number1, number2));
+		try {
+			System.out.println(service.multiplication(number1, number2));
+		} catch (InvalidPathNameException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -57,6 +72,12 @@ public class ArithmeticUtilityImpl implements ArithmeticUtility {
 		System.out.println("Enter 2 Numbers For Division");
 		int number1=scanner.nextInt();
 		int number2=scanner.nextInt();
-		System.out.println(service.division(number1, number2));
+		try {
+			System.out.println(service.division(number1, number2));
+		} catch (InvalidPathNameException e) {
+			e.printStackTrace();
+		} catch (DivideByZeroException e) {
+			e.printStackTrace();
+		}
 	}
 }

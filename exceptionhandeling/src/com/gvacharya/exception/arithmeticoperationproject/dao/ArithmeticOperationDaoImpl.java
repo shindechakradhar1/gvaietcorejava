@@ -9,46 +9,29 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 
+import com.gvacharya.exception.arithmeticoperationproject.customexceptions.InvalidPathNameException;
+
 public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 
 	@Override
-	public int addition(int number1, int number2) {
-		int result=0;
+	public int addition(int result) throws FileNotFoundException, IOException {
 		try(
 				Writer fw= new FileWriter("addition.txt");
 				BufferedWriter bw = new BufferedWriter(fw);
-				
-				
 			){
-			
-			bw.write((number1+number2) + "");
-			
-		
-			
-		} catch (IOException e) {
-			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			bw.write((result) + "");
+		} 
 		try(
 				Reader fr = new FileReader("addition.txt");
 				BufferedReader br = new BufferedReader(fr);
 			){
-			
 			result = Integer.parseInt(br.readLine());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		} 
 		return result;
 	}
 
 	@Override
-	public int substraction(int number1, int number2) {
-		int result=0;
+	public int substraction(int result) throws InvalidPathNameException {
 		try(
 				Writer fw= new FileWriter("substraction.txt");
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -56,14 +39,9 @@ public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 				
 			){
 			
-			bw.write((number1-number2) + "");
-			
-		
-			
+			bw.write((result) + "");	
 		} catch (IOException e) {
-			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InvalidPathNameException("Path Name is Invalid for writing purpose",e);
 		}
 		
 		try(
@@ -72,18 +50,15 @@ public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 			){
 			
 			result = Integer.parseInt(br.readLine());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			throw new InvalidPathNameException("Path Name is Invalid for Reading purpose",e);
+		} 
 		
 		return result;
 	}
 
 	@Override
-	public int multiplication(int number1, int number2) {
-		int result=0;
+	public int multiplication(int result) throws InvalidPathNameException {
 		try(
 				Writer fw= new FileWriter("multiplication.txt");
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -91,14 +66,12 @@ public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 				
 			){
 			
-			bw.write((number1*number2) + "");
+			bw.write((result) + "");
 			
 		
 			
 		} catch (IOException e) {
-			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InvalidPathNameException("Inavlid Path name for Multiplication for Writing purpose", e);
 		}
 		
 		try(
@@ -107,18 +80,15 @@ public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 			){
 			
 			result = Integer.parseInt(br.readLine());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new InvalidPathNameException("Inavlid Path name for Multiplication for Reading purpose", e);
 		}
 		
 		return result;
 	}
 
 	@Override
-	public int division(int number1, int number2) {
-		int result=0;
+	public int division(int result) throws InvalidPathNameException {
 		try(
 				Writer fw= new FileWriter("division.txt");
 				BufferedWriter bw = new BufferedWriter(fw);
@@ -126,14 +96,12 @@ public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 				
 			){
 			
-			bw.write((number1/number2) + "");
+			bw.write((result) + "");
 			
 		
 			
 		} catch (IOException e) {
-			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InvalidPathNameException("Inavlid Path name for Division for Writing purpose", e);
 		}
 		
 		try(
@@ -142,10 +110,8 @@ public class ArithmeticOperationDaoImpl implements ArithmeticOperationDao{
 			){
 			
 			result = Integer.parseInt(br.readLine());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new InvalidPathNameException("Inavlid Path name for Division for Reading purpose", e);
 		}
 		
 		return result;
