@@ -35,11 +35,14 @@ public class ReadWriteFile {
 			ByteBuffer buffer = ByteBuffer.allocate(1024);
 			int charVal=channel.read(buffer);
 			while(charVal!=-1) {
-//				buffer.flip();
-				System.out.println((char)channel.read(buffer));
+				// for read/write buffer flip
+				buffer.flip(); 
+				while(buffer.hasRemaining())
+					System.out.print((char)buffer.get());
+
+				buffer.clear();
 				
-				
-				
+				// reading next chunk of Data for outer for loop
 				charVal = channel.read(buffer);
 			}
 			
