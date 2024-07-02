@@ -1,5 +1,7 @@
 package com.gvacharya.collections.queue;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -33,8 +35,8 @@ public class PriorityQueueExample {
 		
 //		Queue<Mails> mailQueue = 
 //				new PriorityQueue<>((e1,e2)->e1.getPriority().compareTo(e2.getPriority()));
-		Queue<Mails> mailQueue = 
-				new PriorityQueue<>();
+		PriorityQueue<Mails> mailQueue = 
+				new PriorityQueue<>((e1,e2)->e1.getPriority().compareTo(e2.getPriority()));
 		mailQueue.offer(new Mails("abc1@abc.in","p4"));
 		mailQueue.offer(new Mails("abc2@abc.in","p1"));
 		mailQueue.offer(new Mails("abc3@abc.in","p1"));
@@ -49,5 +51,12 @@ public class PriorityQueueExample {
 		System.out.println(mailQueue.poll());
 		System.out.println(mailQueue.poll());
 		System.out.println(mailQueue.poll());
+		
+		Comparator<Mails> mailComparator = (Comparator<Mails>) mailQueue.comparator();
+		System.out.println(mailComparator);
+		
+		Mails[] mailArray = mailQueue.toArray(new Mails[0]);
+		System.out.println(Arrays.toString(mailArray));
+				
 	}
 }
