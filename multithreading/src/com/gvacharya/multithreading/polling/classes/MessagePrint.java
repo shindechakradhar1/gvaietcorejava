@@ -3,7 +3,7 @@ package com.gvacharya.multithreading.polling.classes;
 public class MessagePrint {
 
 	private String msg;
-	private boolean isReady;
+	private boolean isReady=false;
 	public String getMsg() {
 		synchronized (this) {
 			if (!isReady)
